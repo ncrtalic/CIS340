@@ -1,52 +1,37 @@
 
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <math.h>
 
+
+/*
+ * 
+ */
 int main(int argc, char** argv) {
-
-int i,j;
-
-char str[50][75], cmp[50];
-
-printf("Enter 10 words:\n");
-
-for(i=0; i<10; ++i)
-
-scanf("%s[^\n]",str[i]);
-
-for(i=0; i<9; ++i)
-
-for(j=i+1; j<10 ; ++j)
-
-{
-
-if(strcmp(str[i], str[j])>0)
-
-{
-
-strcpy(cmp, str[i]);
-
-strcpy(str[i], str[j]);
-
-strcpy(str[j], cmp);
-
-}
-
-}
-
-printf("\nDictionary Order: \n");
-
-for(i=0; i<10; ++i)
-
-{
-
-printf("%s ",str[i]);
-
-}
-
-return 0;
-
+    int n,i;
+    int d2,count, /*the code will fail here as the line must end with a semicolon ";" instead of a comma ","*/
+    double d1;
+    
+    while (1)
+    {
+        printf("Enter a number (0 to quit): ");
+        scanf("%d", &n);
+        if (n == 0)
+            break;
+        count=0;
+        for (i=0; i<n; i++) /* The code will fail at  this line because a 
+                             * divide error will occur. It should instead be
+                             * for(i=1; i <n; i++) 
+                             * replacing the 0 with a 1 */
+        {
+            d1=(double)n/(double)i;
+            d2=n/i;
+            if (fabs(d1-(double)d2) < 0.00001)
+                count++;
+        }
+        if (count == 2)
+            printf("%d is prime\n", n);
+        else
+            printf("%d is not prime\n", n);
+    }
 }
 
